@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Page background: deep space black -->
+    <color name="background">#07071a</color>
+
+    <!-- Active button (EXIT): dark navy fill, blue border, soft white text -->
+    <color name="btn_active_bg">#0d2040</color>
+    <color name="btn_active_bg_pressed">#1e4080</color>
+    <color name="btn_active_border">#3060b0</color>
+    <color name="btn_active_border_pressed">#5090ff</color>
+    <color name="btn_active_text">#c8dcff</color>
+
+    <!-- Disabled buttons: barely visible against background -->
+    <color name="btn_disabled_bg">#0c0c1e</color>
+    <color name="btn_disabled_border">#18182e</color>
+    <color name="btn_disabled_text">#28284a</color>
+
+    <!-- Title text -->
+    <color name="title_color">#7aaaff</color>
+    <color name="version_color">#2a3a60</color>
+</resources>

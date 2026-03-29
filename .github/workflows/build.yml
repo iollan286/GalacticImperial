@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────
+#  GitHub Actions — Build Debug APK
+#
+#  How to use:
+#    1. Create a free account at github.com
+#    2. Create a new repository (e.g. "GalacticImperial")
+#    3. Upload this entire project folder to the repository
+#       (drag-and-drop works in the GitHub web interface)
+#    4. GitHub will automatically run this workflow
+#    5. Go to the "Actions" tab in your repository
+#    6. Click the latest run → scroll down to "Artifacts"
+#    7. Download "debug-apk.zip", extract it, copy the .apk to
+#       your Moto G Pure, and install it
+#       (you may need to enable "Install unknown apps" in Settings)
+# ─────────────────────────────────────────────────────────────
+
+name: Build Debug APK
+
+on:
+  push:
+    branches: [ "**" ]   # run on every push to any branch
+  workflow_dispatch:      # also allows manual trigger from the Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Download Gradle 7.6
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-7.6-bin.zip
+          unzip -q gradle-7.6-bin.zip
+          echo "$(pwd)/gradle-7.6/bin" >> $GITHUB_PATH
+
+      - name: Build debug APK
+        run: gradle :app:assembleDebug --stacktrace
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
