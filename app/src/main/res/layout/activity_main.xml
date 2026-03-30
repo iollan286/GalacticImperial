@@ -59,10 +59,10 @@
             style="@style/MenuItemDisabled"
             android:text="NEW MULTIPLAYER GAME"/>
 
-        <!-- Disabled -->
+        <!-- ACTIVE -->
         <TextView
             android:id="@+id/btn_new_tutorial"
-            style="@style/MenuItemDisabled"
+            style="@style/MenuItemActive"
             android:text="NEW TUTORIAL GAME"/>
 
         <!-- Disabled -->

@@ -1,8 +1,8 @@
 package com.galacticimperial;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,15 +12,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // EXIT is the only active button for now.
-        // All other buttons are disabled in the layout XML.
+        // EXIT — closes the app
         TextView btnExit = findViewById(R.id.btn_exit);
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Close the app and remove it from the Recents screen.
-                finishAndRemoveTask();
-            }
-        });
+        btnExit.setOnClickListener(v -> finishAndRemoveTask());
+
+        // NEW TUTORIAL GAME — opens the tutorial selection menu
+        TextView btnTutorial = findViewById(R.id.btn_new_tutorial);
+        btnTutorial.setOnClickListener(v ->
+            startActivity(new Intent(this, TutorialMenuActivity.class))
+        );
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:paddingBottom="56dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp">
+
+        <!-- ── Title ──────────────────────────────────────── -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GALACTIC IMPERIAL EXPANSION"
+            android:textColor="@color/title_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.12"
+            android:gravity="center"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TUTORIALS"
+            android:textColor="@color/version_color"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="36dp"/>
+
+        <!-- ── BACK button ────────────────────────────────── -->
+        <TextView
+            android:id="@+id/btn_back"
+            style="@style/MenuItemActive"
+            android:text="◀  BACK"/>
+
+        <!-- ── Divider ────────────────────────────────────── -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/btn_disabled_border"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECT A TUTORIAL"
+            android:textColor="@color/section_header_color"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.12"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- ── Tutorial 1 button ──────────────────────────── -->
+        <TextView
+            android:id="@+id/btn_tutorial1"
+            style="@style/MenuItemActive"
+            android:text="TUTORIAL 1:\nGetting Things Running"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</ScrollView>
