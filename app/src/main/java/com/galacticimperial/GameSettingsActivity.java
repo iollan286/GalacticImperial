@@ -80,9 +80,9 @@ public class GameSettingsActivity extends AppCompatActivity {
 
         // ── RESOURCE SLOTS PER PLANET ────────────────────────────────────────
         settings.add(SettingDef.header("RESOURCE SLOTS PER PLANET",
-            "This section determines the minimum and maximum number of slots a planet can have "
-            "for each basic resource. The total number of factories and/or extractors a planet "
-            "can have producing a given resource can never be greater than the total number of "
+            "This section determines the minimum and maximum number of slots a planet can have " +
+            "for each basic resource. The total number of factories and/or extractors a planet " +
+            "can have producing a given resource can never be greater than the total number of " +
             "slots the planet has for that resource."));
 
         settings.add(SettingDef.minMax("supplies", "Supplies",
@@ -110,7 +110,7 @@ public class GameSettingsActivity extends AppCompatActivity {
 
         // ── DEMOGRAPHIC VARIABLES ────────────────────────────────────────────
         settings.add(SettingDef.header("DEMOGRAPHIC VARIABLES",
-            "These are baseline demographic variables for the game you're creating. They "
+            "These are baseline demographic variables for the game you are creating. They " +
             "influence population growth and decline."));
 
         settings.add(SettingDef.single("turns_maturity", "Turns To Maturity",
@@ -139,7 +139,7 @@ public class GameSettingsActivity extends AppCompatActivity {
 
         // ── ECONOMIC VARIABLES ───────────────────────────────────────────────
         settings.add(SettingDef.header("ECONOMIC VARIABLES",
-            "These are baseline economic variables for the game you're creating. They "
+            "These are baseline economic variables for the game you are creating. They " +
             "influence how productive each population unit is."));
 
         settings.add(SettingDef.single("labor_points_per_hour", "Labor Points Per Hour",
@@ -165,7 +165,7 @@ public class GameSettingsActivity extends AppCompatActivity {
 
         // ── UNREST VARIABLES ─────────────────────────────────────────────────
         settings.add(SettingDef.header("UNREST VARIABLES",
-            "These are baseline variables affecting the domestic political situation on "
+            "These are baseline variables affecting the domestic political situation on " +
             "each inhabited planet."));
 
         settings.add(SettingDef.single("consumption_unrest_threshold", "Consumption Unrest Threshold",
@@ -250,7 +250,7 @@ public class GameSettingsActivity extends AppCompatActivity {
 
         // ── INFRASTRUCTURE VARIABLES ─────────────────────────────────────────
         settings.add(SettingDef.header("INFRASTRUCTURE VARIABLES",
-            "These variables affect the building of infrastructure, the risks to "
+            "These variables affect the building of infrastructure, the risks to " +
             "infrastructure, and the power requirements of that infrastructure."));
 
         settings.add(SettingDef.single("metals_required", "Metals Required",
