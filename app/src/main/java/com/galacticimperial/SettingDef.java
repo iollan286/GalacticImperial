@@ -42,6 +42,14 @@ public class SettingDef {
         return d;
     }
 
+    public static SettingDef header(String label, String help) {
+        SettingDef d = new SettingDef();
+        d.type = Type.HEADER;
+        d.label = label;
+        d.help = help;
+        return d;
+    }
+
     public static SettingDef single(String key, String label, String help, int width) {
         SettingDef d = new SettingDef();
         d.type = Type.SINGLE;

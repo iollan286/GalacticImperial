@@ -79,7 +79,11 @@ public class GameSettingsActivity extends AppCompatActivity {
     private void defineSettings() {
 
         // ── RESOURCE SLOTS PER PLANET ────────────────────────────────────────
-        settings.add(SettingDef.header("RESOURCE SLOTS PER PLANET"));
+        settings.add(SettingDef.header("RESOURCE SLOTS PER PLANET",
+            "This section determines the minimum and maximum number of slots a planet can have "
+            "for each basic resource. The total number of factories and/or extractors a planet "
+            "can have producing a given resource can never be greater than the total number of "
+            "slots the planet has for that resource."));
 
         settings.add(SettingDef.minMax("supplies", "Supplies",
             "Each population unit will try to consume a certain number of units of supplies per turn. " +
@@ -105,7 +109,9 @@ public class GameSettingsActivity extends AppCompatActivity {
             "for safety reasons.", 2, 2));
 
         // ── DEMOGRAPHIC VARIABLES ────────────────────────────────────────────
-        settings.add(SettingDef.header("DEMOGRAPHIC VARIABLES"));
+        settings.add(SettingDef.header("DEMOGRAPHIC VARIABLES",
+            "These are baseline demographic variables for the game you're creating. They "
+            "influence population growth and decline."));
 
         settings.add(SettingDef.single("turns_maturity", "Turns To Maturity",
             "This is the baseline number of turns required for a child population unit to become " +
@@ -132,7 +138,9 @@ public class GameSettingsActivity extends AppCompatActivity {
             "not to die of starvation. It is the same for all population units regardless of race and age.", 2));
 
         // ── ECONOMIC VARIABLES ───────────────────────────────────────────────
-        settings.add(SettingDef.header("ECONOMIC VARIABLES"));
+        settings.add(SettingDef.header("ECONOMIC VARIABLES",
+            "These are baseline economic variables for the game you're creating. They "
+            "influence how productive each population unit is."));
 
         settings.add(SettingDef.single("labor_points_per_hour", "Labor Points Per Hour",
             "This determines the baseline number of labor points a population unit produces per " +
@@ -156,7 +164,9 @@ public class GameSettingsActivity extends AppCompatActivity {
             .withConstraint("Must be > 0 and ≤ 1"));
 
         // ── UNREST VARIABLES ─────────────────────────────────────────────────
-        settings.add(SettingDef.header("UNREST VARIABLES"));
+        settings.add(SettingDef.header("UNREST VARIABLES",
+            "These are baseline variables affecting the domestic political situation on "
+            "each inhabited planet."));
 
         settings.add(SettingDef.single("consumption_unrest_threshold", "Consumption Unrest Threshold",
             "This is the baseline number of units of supplies each population unit on a planet has " +
@@ -239,7 +249,9 @@ public class GameSettingsActivity extends AppCompatActivity {
             "turn in which the unrest level is above the revolution threshold.", 5));
 
         // ── INFRASTRUCTURE VARIABLES ─────────────────────────────────────────
-        settings.add(SettingDef.header("INFRASTRUCTURE VARIABLES"));
+        settings.add(SettingDef.header("INFRASTRUCTURE VARIABLES",
+            "These variables affect the building of infrastructure, the risks to "
+            "infrastructure, and the power requirements of that infrastructure."));
 
         settings.add(SettingDef.single("metals_required", "Metals Required",
             "This is the baseline number of units of metals which will be required to build " +
@@ -294,7 +306,8 @@ public class GameSettingsActivity extends AppCompatActivity {
             "chemicals, in order to build a building which has a degradation bonus.", 10));
 
         // ── GENERATOR VARIABLES ──────────────────────────────────────────────
-        settings.add(SettingDef.header("GENERATOR VARIABLES"));
+        settings.add(SettingDef.header("GENERATOR VARIABLES",
+            "These variables affect the performance of generators."));
 
         settings.add(SettingDef.single("capacity_per_metals", "Capacity Units Per Metals Unit",
             "This is the number of units of Chronium and/or Q-ide a generator can process relative " +
@@ -367,7 +380,7 @@ public class GameSettingsActivity extends AppCompatActivity {
         // ── Setting rows ─────────────────────────────────────────────────────
         for (SettingDef s : settings) {
             if (s.type == SettingDef.Type.HEADER) {
-                container.addView(makeSectionHeader(s.label), fullWidthMargin(0, dp(16), 0, dp(8)));
+                container.addView(makeSectionHeader(s), fullWidthMargin(0, dp(16), 0, dp(8)));
             } else {
                 container.addView(makeSettingRow(s), fullWidthMargin(0, 0, 0, dp(12)));
             }
@@ -384,15 +397,27 @@ public class GameSettingsActivity extends AppCompatActivity {
 
     // ── Row builders ─────────────────────────────────────────────────────────
 
-    private View makeSectionHeader(String title) {
+    private View makeSectionHeader(SettingDef s) {
+        LinearLayout row = new LinearLayout(this);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        row.setGravity(Gravity.CENTER_VERTICAL);
+        row.setPadding(0, 0, 0, dp(4));
+
+        // ? button — only shown when help text is available
+        if (s.help != null && !s.help.isEmpty()) {
+            TextView qBtn = makeQButton(s.help);
+            row.addView(qBtn, wrapWrapMargin(0, 0, dp(8), 0));
+        }
+
         TextView tv = new TextView(this);
-        tv.setText(title);
+        tv.setText(s.label);
         tv.setTextColor(color(R.color.section_header_color));
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         tv.setTypeface(android.graphics.Typeface.MONOSPACE, android.graphics.Typeface.BOLD);
         tv.setLetterSpacing(0.12f);
-        tv.setPadding(0, 0, 0, dp(4));
-        return tv;
+        row.addView(tv, wrapWrap());
+
+        return row;
     }
 
     private View makeSettingRow(SettingDef s) {
